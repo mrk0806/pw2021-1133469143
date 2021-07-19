@@ -1,30 +1,6 @@
 <?php
-//#koneksi db & pilih db
-$conn = mysqli_connect('localhost', 'root', '', 'pw_043040023');
-
-//#query isi table mahasiswa
-$result = mysqli_query($conn, "Select * from mahasiswa");
-
-//var_dump($result);  //untuk melihat data objectnya
-
-//#ubah data ke dalam array
-
-//$row = mysqli_fetch_row($result); //array numeric
-//$row = mysqli_fetch_assoc($result); //array assoc
-//$row = mysqli_fetch_array($result); //array assoc & array numeric
-
-//kita biasanya pakai yang assoc
-//$row = mysqli_fetch_assoc($result);
-//var_dump($row); //untuk melihat data objectnya
-//kalau pakai cara yg di atas hanya ada 1. supaya terlihat supaya semuanya kita harus looping
-$rows = []; // array kosong
-while ($row = mysqli_fetch_assoc($result)) {
-  $rows[] = $row; // row looping akan masuk ke array kosong $rows
-}
-//var_dump($row); //untuk melihat data objectnya
-
-// #tampung ke variable
-$mahasiswa = $rows;
+require 'functions.php';
+$mahasiswa = query("Select * from mahasiswa");
 
 ?>
 <!DOCTYPE html>
