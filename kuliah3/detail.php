@@ -1,5 +1,12 @@
 <?php
 require 'functions.php';
+
+//jika tidak ada id di url
+if (!isset($_GET['id'])) {
+  header("location: index.php");
+  exit;
+}
+
 $id = $_GET['id']; //ambil id dari URL
 
 $m = query("Select * from mahasiswa where id =$id"); //query mahasiswa berdasarkan id yg diambil dari URL
@@ -24,7 +31,7 @@ $m = query("Select * from mahasiswa where id =$id"); //query mahasiswa berdasark
     <li>NAMA : <?= $m['nama']; ?></li>
     <li>EMAIL : <?= $m['email']; ?></li>
     <li>JURUSAN : <?= $m['jurusan']; ?></li>
-    <li><a href="">Ubah</a> | <a href="">Hapus</a></li>
+    <li><a href="ubah.php?id=<?= $m['id']; ?>">Ubah</a> | <a href="hapus.php?id=<?= $m['id']; ?>" onclick="return confirm('apakah anda yakin?')">Hapus</a></li>
     <li><a href="index.php">Kembali ke Daftar Mahasiswa</a> </li>
   </ul>
 </body>
