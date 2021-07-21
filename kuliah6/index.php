@@ -30,37 +30,39 @@ if (isset($_POST['cari'])) {
   <a href="tambah.php">Tambah Daftar Mahasiswa</a>
   <br><br>
   <form action="" method="POST">
-    <input type="text" name="keyword" size="40" placeholder="masukan keyword pencarian.." autocomplete="off" autofocus>
-    <button type="submit" name="cari">Cari!</button>
+    <input type="text" name="keyword" size="40" placeholder="masukan keyword pencarian.." autocomplete="off" autofocus class="keyword">
+    <button type="submit" name="cari" class="tombol-cari">Cari!</button>
   </form>
   <br>
-
-  <table border="1" cellpadding="10" cellspasing="0">
-    <tr>
-      <th>#</th>
-      <th>Gambar</th>
-      <th>Nama</th>
-      <th>Aksi</th>
-    </tr>
-    <?php if (empty($mahasiswa)) : ?>
+  <div class="container">
+    <table border="1" cellpadding="10" cellspasing="0">
       <tr>
-        <td colspan="4">
-          <p style="color:red; font-style:italic;">Data mahasiswa tidak ditemukan</p>
-        </td>
+        <th>#</th>
+        <th>Gambar</th>
+        <th>Nama</th>
+        <th>Aksi</th>
       </tr>
-    <?php endif; ?>
-    <?php $i = 1;
-    foreach ($mahasiswa as $m) : ?>
-      <tr>
-        <td><?= $i++; ?></td>
-        <td><img src="img/<?= $m['gambar']; ?>" width="70px"></td>
-        <td><?= $m['nama']; ?></td>
-        <td>
-          <a href="detail.php?id=<?= $m['id']; ?>">Lihat Detail</a>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </table>
+      <?php if (empty($mahasiswa)) : ?>
+        <tr>
+          <td colspan="4">
+            <p style="color:red; font-style:italic;">Data mahasiswa tidak ditemukan</p>
+          </td>
+        </tr>
+      <?php endif; ?>
+      <?php $i = 1;
+      foreach ($mahasiswa as $m) : ?>
+        <tr>
+          <td><?= $i++; ?></td>
+          <td><img src="img/<?= $m['gambar']; ?>" width="70px"></td>
+          <td><?= $m['nama']; ?></td>
+          <td>
+            <a href="detail.php?id=<?= $m['id']; ?>">Lihat Detail</a>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </table>
+  </div>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
