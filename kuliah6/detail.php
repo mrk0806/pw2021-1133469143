@@ -35,7 +35,7 @@ $m = query("Select * from mahasiswa where id =$id"); //query mahasiswa berdasark
 <body>
   <h3>Detail Mahasiswa</h3>
   <ul>
-    <li><img src="img/<?= $m['gambar']; ?>" width="100"></li>
+    <li><img src="img/<?= $m['gambar']; ?>" width="250"></li>
     <li>NRP : <?= $m['nrp']; ?></li>
     <li>NAMA : <?= $m['nama']; ?></li>
     <li>EMAIL : <?= $m['email']; ?></li>
