@@ -39,12 +39,12 @@ function upload()
 
   //ketika tidak ada gambar yg di pilih
   if ($error == 4) {
-    echo "
-      <script>
-        alert('pilih gambar terlebih dahulu!');
-      </script>
-    ";
-    return false;
+    // echo "
+    //   <script>
+    //     alert('pilih gambar terlebih dahulu!');
+    //   </script>
+    // ";
+    return "no_photo.jpg";
   }
   //cek extensi file
   $daftar_gambar = ['jpg', 'jpeg', 'png'];
@@ -134,6 +134,12 @@ function tambah($data)
 function hapus($id)
 {
   $conn = koneksi();
+  //menghapus gambar di folder img
+  $mhs = query("select * from mahasiswa where id = $id");
+  if ($mhs['gambar'] != 'no_photo.jpg') {
+
+    unlink('img/' . $mhs['gambar']);
+  }
   mysqli_query($conn, "DELETE FROM mahasiswa where id=$id") or die(mysqli_error($conn));
   return mysqli_affected_rows($conn);
 }
@@ -148,7 +154,16 @@ function ubah($data)
   $nrp = htmlspecialchars($data['nrp']);
   $email = htmlspecialchars($data['email']);
   $jurusan = htmlspecialchars($data['jurusan']);
-  $gambar = htmlspecialchars($data['gambar']);
+  $gambar_lama = htmlspecialchars($data['gambar_lama']);
+
+  $gambar = upload();
+  if (!$gambar) {
+    return false;
+  }
+
+  if ($gambar == 'no_photo.jpg') {
+    $gambar = $gambar_lama;
+  }
 
   $query = "UPDATE mahasiswa SET
       nama = '$nama',

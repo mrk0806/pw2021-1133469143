@@ -5,6 +5,8 @@ const container = document.querySelector('.container');
 //hilangkan tombol cari
 tombolCari.style.display = 'none';
 
+
+
 keyword.addEventListener('keyup', function() {
     // console.log('ok! ')
     //ajax
@@ -29,6 +31,7 @@ keyword.addEventListener('keyup', function() {
         .then((response) => (container.innerHTML = response));
 
 });
+
 
 //tambahkan preview image untuk tambah dan ubah
 function previewImage() {
